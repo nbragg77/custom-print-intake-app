@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Custom Item Request</title>
+</head>
+<body>
+    <h1><b>Custom Item Request Form</b></h1><br>
+    <form action="/form" method="POST" enctype="multipart/form-data">
+        <label for="sales_rep_name">Sales Rep Name:</label><br>
+        <input type="text" name="sales_rep_name" required><br><br>
+
+        <label for="customer_name">Customer Name:</label><br>
+        <input type="text" name="customer_name" required><br><br>
+
+        <label for="item">Item:</label><br>
+        <input type="text" name="item" required><br><br>
+
+        <label for="logo_available">Logo Available?</label><br>
+        <input type="radio" name="logo_available" value="yes" required> Yes
+        <input type="radio" name="logo_available" value="no"> No<br><br>
+
+        <div id="file-upload">
+            <label for="logo_file">Upload Logo (.ai, .eps, .pdf, .svg only):</label><br>
+            <input type="file" name="logo_file" accept=".ai,.eps,.pdf,.svg"><br><br>
+        </div>
+
+        <label for="logo_location">Desired Logo Location:</label><br>
+        <input type="text" name="logo_location" required><br><br>
+
+        <label for="supplier">Preferred Supplier:</label><br>
+        <input type="text" name="supplier" required><br><br>
+
+        <label for="usage">Monthly Usage:</label><br>
+        <input type="text" name="usage" required><br><br>
+
+        <label for="cost">Target Cost:</label><br>
+        <input type="text" name="cost" required><br><br>
+
+        <label for="order_type">Select One:</label><br>
+        <select name="order_type" required>
+            <option value="">--Select--</option>
+            <option value="One-time custom run">One-time custom run</option>
+            <option value="Bill & Hold (approval required)">Bill & Hold (approval required)</option>
+            <option value="Stocking (signed stocking agreement required)">Stocking (signed stocking agreement required)</option>
+            <option value="Unsure">Unsure</option>
+        </select><br><br>
+
+        <label for="comments">Additional Comments:</label><br>
+        <textarea name="comments" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const logoRadios = document.querySelectorAll('input[name="logo_available"]');
+        const fileUploadDiv = document.getElementById('file-upload');
+
+        function toggleFileUpload() {
+            const selected = [...logoRadios].find(r => r.checked);
+            fileUploadDiv.style.display = selected && selected.value === 'yes' ? 'block' : 'none';
+        }
+
+        logoRadios.forEach(r => r.addEventListener('change', toggleFileUpload));
+        toggleFileUpload(); // Initial load
+    </script>
+</body>
+</html>
