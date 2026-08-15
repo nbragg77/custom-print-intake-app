@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: flask-survey-app
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: EMAIL_HOST_USER
+        value: your_email@example.com
+      - key: EMAIL_HOST_PASSWORD
+        value: your_password
+      - key: EMAIL_RECEIVER
+        value: receiver@example.com
